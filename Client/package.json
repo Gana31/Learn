@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "http://localhost:8001/",
+  "proxy": "https://learn-ca6m-9o9xitwu9-gana31s-projects.vercel.app/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

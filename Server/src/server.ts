@@ -20,7 +20,7 @@ app.use(express.json({limit:"50mb"}));
 
 app.use(cors({
     credentials: true,
-    origin:process.env.ORIGIN || "http://localhost:5173" ,
+    origin:process.env.ORIGIN || "https://learn-alpha-murex.vercel.app/" ,
     
 }))
 app.use(cookieParser());
