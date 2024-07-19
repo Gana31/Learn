@@ -8,7 +8,6 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import ConfirmationModal from "../../../Common/ConfirmationModal";
 import { useDeleteCourseMutation, useGetInstructorCoursesQuery } from "../../../../Services/Operation/authApi";
-import toast from "react-hot-toast";
 
 interface Course {
   _id: string;

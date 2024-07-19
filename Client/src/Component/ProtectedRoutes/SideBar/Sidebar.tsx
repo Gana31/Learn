@@ -3,7 +3,7 @@ import { sidebarLinks } from "../../../data/dashboard-links";
 import { SidebarLink } from "./SidebarLink";
 import { useLogoutMutation } from "../../../Services/Operation/authApi";
 import { useState } from "react";
-import { VscSignOut, VscMenu, VscSettingsGear } from "react-icons/vsc";
+import { VscSignOut, VscMenu,} from "react-icons/vsc";
 import ConfirmationModal from "../../Common/ConfirmationModal";
 import { useNavigate } from "react-router-dom";
 import { LogOutState } from "../../../Slice/AuthSlice";

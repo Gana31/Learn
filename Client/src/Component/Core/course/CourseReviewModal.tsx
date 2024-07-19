@@ -24,7 +24,7 @@ export default function CourseReviewModal({ setReviewModal } : any) {
     setValue("courseRating", 0)
   }, [])
 
-  const ratingChanged = (event : any, newRating : any) => {
+  const ratingChanged = (_ : any, newRating : any) => {
     SetRatingvalue(newRating);
     setValue("courseRating", newRating)
   }
