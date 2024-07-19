@@ -10,7 +10,6 @@ import { updateCompletedLectures } from "../../../Slice/ViewCourseSlice"
 
 export default function VideoDetailsSidebar({ setReviewModal } : any) {
   const [activeStatus, setActiveStatus] = useState("")
-  const [loading, setLoading] = useState(false);
   const [videoBarActive, setVideoBarActive] = useState("")
   const navigate = useNavigate()
   const location = useLocation()
@@ -45,7 +44,6 @@ export default function VideoDetailsSidebar({ setReviewModal } : any) {
 
   const handleLectureCompletion = async () => {
     // console.log("handleLectureCompletion triggered"); // Debugging log
-    setLoading(true);
     try {
       const res = await updateCourseProgress(
         { courseId: courseId, subsectionId: subSectionId }
@@ -57,7 +55,6 @@ export default function VideoDetailsSidebar({ setReviewModal } : any) {
     } catch (error) {
       console.error("Error updating course progress:", error); // Error log
     }
-    setLoading(false);
   };
 
 

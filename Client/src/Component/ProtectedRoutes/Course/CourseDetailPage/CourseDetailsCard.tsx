@@ -18,7 +18,6 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse } : a
   const {
     thumbnail: ThumbnailImage,
     price: CurrentPrice,
-    _id: courseId,
   } = course
 
   const handleShare = () => {
