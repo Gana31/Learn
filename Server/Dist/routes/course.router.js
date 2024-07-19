@@ -1,0 +1,30 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const multer_1 = require("../middleware/multer");
+const analytics_controller_1 = require("../controllers/analytics.controller");
+const TeacherCourse_controller_1 = require("../controllers/TeacherCourse.controller");
+const Payment_controller_1 = require("../controllers/Payment.controller");
+const Auth_middleware_1 = require("../middleware/Auth.middleware");
+const courseRouter = express_1.default.Router();
+courseRouter.post('/createCourse', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("Instructor"), multer_1.upload.single("thumbnailImage"), TeacherCourse_controller_1.uploadTeacherCourse);
+courseRouter.post('/editCourse', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("Instructor"), multer_1.upload.single("thumbnailImage"), TeacherCourse_controller_1.editCourse);
+courseRouter.post('/CreateCategory', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("admin"), analytics_controller_1.createCategory);
+courseRouter.get('/GetAllCategory', analytics_controller_1.showAllCategories);
+courseRouter.get('/GetAllTeacherCourses', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("Instructor"), TeacherCourse_controller_1.getAllCourses);
+courseRouter.get('/getInstructorCourses', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("Instructor"), TeacherCourse_controller_1.getInstructorCourses);
+courseRouter.post('/getFullCourseDetails', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("Instructor"), TeacherCourse_controller_1.getFullCourseDetails);
+courseRouter.post('/deleteCourse', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("Instructor"), TeacherCourse_controller_1.deleteCourse);
+courseRouter.post("/getCategoryPageDetails", analytics_controller_1.categoryPageDetailsteCourse);
+courseRouter.post("/getCourseDetails", TeacherCourse_controller_1.getCourseDetails);
+courseRouter.post('/capturePayment', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("Student"), Payment_controller_1.capturePayment);
+courseRouter.post('/verifyPayment', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("Student"), Payment_controller_1.verifyPayment);
+courseRouter.post('/sendPaymentSuccessEmail', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("Student"), Payment_controller_1.sendPaymentSuccessEmail);
+courseRouter.post('/createRating', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("Student"), analytics_controller_1.createRating);
+courseRouter.post('/updateCourseProgress', Auth_middleware_1.isAutheticated, (0, Auth_middleware_1.authorizeRoles)("Student"), analytics_controller_1.updateCourseProgress);
+courseRouter.get('/getReviews', TeacherCourse_controller_1.getAllRating);
+exports.default = courseRouter;
+//# sourceMappingURL=course.router.js.map
