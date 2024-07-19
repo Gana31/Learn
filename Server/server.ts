@@ -1,0 +1,68 @@
+import express, {Application, Request ,Response}  from 'express';
+import cookieParser from 'cookie-parser'
+import cors from "cors";
+import connectDB from './db/databaseConnection';
+import ApiError from './utils/ApiError';
+import { ApiResponse } from './utils/ApiResponse';
+import userRouter from './routes/user.route';
+import {v2 as cloudinary} from "cloudinary";
+import courseRouter from './routes/course.router';
+import sectionRouter from './routes/section.router';
+// import orderRouter from './routes/order.routess';
+// import AnalyticsRouter from './routes/analyatics.router';
+// import layoutRouter from './routes/layout.router';
+require("dotenv").config();
+
+const app : Application = express()
+
+app.use(express.json({limit:"50mb"}));
+
+app.use(cors({
+    credentials: true,
+    origin:process.env.ORIGIN || "http://localhost:5173" ,
+    
+}))
+app.use(cookieParser());
+
+// app.use((req, res, next) => {
+//     const {cookie} = req.headers;
+//     console.log('Cookies:', req.headers);
+// //     console.log('SignCookies:', req.signedCookies); // Log cookies
+// //   console.log('Request Headers:', req.headers);
+
+//     next();
+//   });
+
+
+app.use("/api/v1",userRouter,courseRouter,sectionRouter);
+
+
+cloudinary.config({
+cloud_name : process.env.CLOUD_NAME,
+api_key : process.env.CLOUD_API_KEY,
+api_secret : process.env.CLOUD_SECRET_KEY,
+})
+
+
+
+
+app.get('/',(req: Request,res:Response)=>{
+   res.send( new ApiResponse(200,"server is started","data"));
+})
+
+app.all("*",(req: Request,res:Response)=>{
+    throw new ApiError(400,"PAGE NOT FOUND ");
+    })
+
+    
+
+
+connectDB()
+.then(()=>{
+    app.listen(process.env.PORT,()=>{
+        console.log("SERVER IS STARTED AT ",process.env.PORT);
+    })
+})
+.catch((error)=>{
+    console.log("ERROR ACCURING WHILE CONNECTING DATABASE ");
+})
