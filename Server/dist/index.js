@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-// import cors from "cors";
+const cors_1 = __importDefault(require("cors"));
 const databaseConnection_1 = __importDefault(require("./db/databaseConnection"));
 const ApiError_1 = __importDefault(require("./utils/ApiError"));
 const user_route_1 = __importDefault(require("./routes/user.route"));
@@ -19,10 +19,10 @@ const ErrorHandler_1 = __importDefault(require("./middleware/ErrorHandler"));
 require("dotenv").config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json({ limit: "50mb" }));
-// app.use(cors({
-//     credentials: true,
-//     origin:process.env.ORIGIN || "https://learn-alpha-murex.vercel.app" ,
-// }))
+app.use((0, cors_1.default)({
+    credentials: true,
+    origin: process.env.ORIGIN || "https://learn-alpha-murex.vercel.app",
+}));
 app.use((0, cookie_parser_1.default)());
 app.use("/api/v1", user_route_1.default, course_router_1.default, section_router_1.default);
 cloudinary_1.v2.config({

@@ -1,6 +1,6 @@
 import express, {Application, NextFunction, Request ,Response}  from 'express';
 import cookieParser from 'cookie-parser'
-// import cors from "cors";
+import cors from "cors";
 import connectDB from './db/databaseConnection';
 import ApiError from './utils/ApiError';
 import { ApiResponse } from './utils/ApiResponse';
@@ -18,11 +18,11 @@ const app : Application = express()
 
 app.use(express.json({limit:"50mb"}));
 
-// app.use(cors({
-//     credentials: true,
-//     origin:process.env.ORIGIN || "https://learn-alpha-murex.vercel.app" ,
+app.use(cors({
+    credentials: true,
+    origin:process.env.ORIGIN || "https://learn-alpha-murex.vercel.app" ,
     
-// }))
+}))
 app.use(cookieParser());
 
 
