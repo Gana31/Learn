@@ -21,7 +21,7 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json({ limit: "50mb" }));
 app.use((0, cors_1.default)({
     credentials: true,
-    origin: process.env.ORIGIN || "http://localhost:5173",
+    origin: process.env.ORIGIN || "https://learn-alpha-murex.vercel.app",
 }));
 app.use((0, cookie_parser_1.default)());
 app.use("/api/v1", user_route_1.default, course_router_1.default, section_router_1.default);
@@ -30,8 +30,8 @@ cloudinary_1.v2.config({
     api_key: process.env.CLOUD_API_KEY,
     api_secret: process.env.CLOUD_SECRET_KEY,
 });
-app.all("*", (req, res) => {
-    throw new ApiError_1.default(400, "PAGE NOT FOUND ");
+app.all("*", (req, res, next) => {
+    next(new ApiError_1.default(400, "PAGE NOT FOUND "));
 });
 app.use(ErrorHandler_1.default);
 (0, databaseConnection_1.default)()
