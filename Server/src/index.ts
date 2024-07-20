@@ -18,11 +18,22 @@ const app : Application = express()
 
 app.use(express.json({limit:"50mb"}));
 
+const allowedOrigins = [
+    process.env.ORIGIN || "https://learn-alpha-murex.vercel.app",
+    "https://learn-git-main-gana31s-projects.vercel.app",
+    "https://learn-cw69512x3-gana31s-projects.vercel.app"
+];
+
 app.use(cors({
     credentials: true,
-    origin:[process.env.ORIGIN || "https://learn-alpha-murex.vercel.app","https://learn-git-main-gana31s-projects.vercel.app","https://learn-cw69512x3-gana31s-projects.vercel.app"] ,
-    
-}))
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
+}));
 app.use(cookieParser());
 
 
