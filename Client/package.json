@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "https://learn-f9zm-1abvx4snm-gana31s-projects.vercel.app",
+  "proxy": "https://learn-f9zm.vercel.app",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
