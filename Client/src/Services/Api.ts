@@ -1,4 +1,4 @@
-export const BASE_URL = "https://learn-y15d-3mwng4v8k-gana31s-projects.vercel.app/api/v1"
+export const BASE_URL = "https://learn-f9zm-7i1fy9q3j-gana31s-projects.vercel.app/api/v1"
 
 
 export const categoryUrl = BASE_URL + "/GetAllCategory"
