@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "dev": "ts-node-dev --files src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
+=======
+     "dev": "ts-node-dev --files src/server.ts",
+  
+>>>>>>> d5d62f6b20eb410dea35131d71e54de470028588
   },
   "author": "",
   "license": "ISC",
