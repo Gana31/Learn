@@ -20,7 +20,7 @@ app.use(express.json({limit:"50mb"}));
 
 
 const allowedOrigins = [
-    process.env.ORIGIN || 'https://learn-alpha-murex.vercel.app',
+    'https://learn-alpha-murex.vercel.app',
     'https://learn-git-main-gana31s-projects.vercel.app',
     'https://learn-cw69512x3-gana31s-projects.vercel.app'
 ];
@@ -36,21 +36,6 @@ app.use(cors({
     }
 }));
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    next();
-});
-
-app.options('*', (req, res) => {
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.sendStatus(200);
-});
 app.use(cookieParser());
 
 app.use("/api/v1",userRouter,courseRouter,sectionRouter);
