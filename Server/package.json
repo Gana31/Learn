@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-     "dev": "ts-node-dev --files src/server.ts",
-     "build": "tsc",
+    "dev": "ts-node-dev --files src/server.ts",
+    "build": "tsc",
     "start": "node dist/server.js"
   },
   "author": "",
@@ -24,7 +24,10 @@
     "multer": "^1.4.5-lts.1",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.12",
-    "razorpay": "^2.9.4"
+    "nodemon": "^3.1.4",
+    "pre-commit": "^1.2.2",
+    "razorpay": "^2.9.4",
+    "rimraf": "^6.0.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
