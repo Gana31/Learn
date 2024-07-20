@@ -21,7 +21,7 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json({ limit: "50mb" }));
 app.use((0, cors_1.default)({
     credentials: true,
-    origin: process.env.ORIGIN || "https://learn-alpha-murex.vercel.app",
+    origin: [process.env.ORIGIN || "https://learn-alpha-murex.vercel.app", "https://learn-git-main-gana31s-projects.vercel.app", "https://learn-cw69512x3-gana31s-projects.vercel.app"],
 }));
 app.use((0, cookie_parser_1.default)());
 app.use("/api/v1", user_route_1.default, course_router_1.default, section_router_1.default);

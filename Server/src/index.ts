@@ -20,7 +20,7 @@ app.use(express.json({limit:"50mb"}));
 
 app.use(cors({
     credentials: true,
-    origin:process.env.ORIGIN || "https://learn-alpha-murex.vercel.app" ,
+    origin:[process.env.ORIGIN || "https://learn-alpha-murex.vercel.app","https://learn-git-main-gana31s-projects.vercel.app","https://learn-cw69512x3-gana31s-projects.vercel.app"] ,
     
 }))
 app.use(cookieParser());
