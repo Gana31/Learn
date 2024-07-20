@@ -53,7 +53,7 @@ export const SendTokenToRedis = (user: UserSchemaInterface, statusCode: number, 
     const accessToken = user.signAcessToken();
     const refreshToken = user.signrefreshToken();
 
-    redis.set(user._id, JSON.stringify(user));
+    redis.set(String(user._id), JSON.stringify(user));
 
     res.cookie("access_token", accessToken, acccesTokenOptions);
     res.cookie("refresh_token", refreshToken,refreshTokenOptions);
