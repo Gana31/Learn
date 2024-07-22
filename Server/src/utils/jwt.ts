@@ -29,6 +29,7 @@ const localRefreshTokenExpiry = new Date(currentTime + refreshTokenExpire * 24 *
 const localAccessTokenExpiryString = localAccessTokenExpiry.toLocaleString(); // Convert to local time string
 const localRefreshTokenExpiryString = localRefreshTokenExpiry.toLocaleString(); // Convert to local time string
 
+console.log("Node Env Check",process.env.NODE_ENV)
 export const acccesTokenOptions: InterfaceTokenOptions = {
     expires: localAccessTokenExpiry,
     maxAge: acccesTokenExpire * 24 * 60 * 60 * 1000, // 1 day in milliseconds
