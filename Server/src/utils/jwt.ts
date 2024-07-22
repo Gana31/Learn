@@ -8,7 +8,7 @@ interface InterfaceTokenOptions {
     maxAge: number;
     httpOnly: boolean;
     sameSite: 'lax' | 'strict' | 'none' | undefined;
-    Secure?: boolean;
+    secure?: boolean;
 }
 
 // Token expiration times from environment variables
@@ -34,7 +34,7 @@ export const acccesTokenOptions: InterfaceTokenOptions = {
     maxAge: acccesTokenExpire * 24 * 60 * 60 * 1000, // 1 day in milliseconds
     httpOnly: true,
     sameSite: 'none',
-    Secure:  process.env.NODE_ENV === 'production',
+    secure:  true,
 };
 
 export const refreshTokenOptions: InterfaceTokenOptions = {
@@ -42,7 +42,7 @@ export const refreshTokenOptions: InterfaceTokenOptions = {
     maxAge: refreshTokenExpire * 24 * 60 * 60 * 1000, // 5 days in milliseconds
     httpOnly: true,
     sameSite: 'none',
-    Secure:  process.env.NODE_ENV === 'production',
+    secure:  true,
 };
 
 // console.log('Current Server Time (UTC):', new Date(currentTime).toLocaleString());
