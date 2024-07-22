@@ -167,9 +167,9 @@ interface userLoginInterface {
 
    export const userLogout = asyncHandler(async(req : Request ,res : Response,next:NextFunction)=>{
     try {
-        const domains = [ 'https://learn-alpha-murex.vercel.app',
-            'https://learn-git-main-gana31s-projects.vercel.app',
-            'https://learn-cw69512x3-gana31s-projects.vercel.app'];
+        const domains = [ 'learn-alpha-murex.vercel.app',
+            'learn-git-main-gana31s-projects.vercel.app',
+            'learn-cw69512x3-gana31s-projects.vercel.app'];
         // console.log(req.user || "");
         const id = req.user?._id || ''
         await redis.del(id);
