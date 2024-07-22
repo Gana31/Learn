@@ -35,7 +35,7 @@ export const acccesTokenOptions: InterfaceTokenOptions = {
     maxAge: acccesTokenExpire * 24 * 60 * 60 * 1000, // 1 day in milliseconds
     httpOnly: true,
     sameSite: 'none',
-    secure:  true,
+    secure:  process.env.NODE_ENV == 'production',
 };
 
 export const refreshTokenOptions: InterfaceTokenOptions = {
@@ -43,7 +43,7 @@ export const refreshTokenOptions: InterfaceTokenOptions = {
     maxAge: refreshTokenExpire * 24 * 60 * 60 * 1000, // 5 days in milliseconds
     httpOnly: true,
     sameSite: 'none',
-    secure:  true,
+    secure:  process.env.NODE_ENV == 'production',
 };
 
 // console.log('Current Server Time (UTC):', new Date(currentTime).toLocaleString());
