@@ -25,7 +25,6 @@ const allowedOrigins = [
     'https://learn-cw69512x3-gana31s-projects.vercel.app'
 ];
 app.use((0, cors_1.default)({
-    credentials: true,
     origin: (origin, callback) => {
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
@@ -33,7 +32,8 @@ app.use((0, cors_1.default)({
         else {
             callback(new Error('Not allowed by CORS'));
         }
-    }
+    },
+    credentials: true,
 }));
 app.use((0, cookie_parser_1.default)());
 app.use("/api/v1", user_route_1.default, course_router_1.default, section_router_1.default);

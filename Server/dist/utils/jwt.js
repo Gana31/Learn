@@ -20,15 +20,15 @@ exports.acccesTokenOptions = {
     expires: localAccessTokenExpiry,
     maxAge: acccesTokenExpire * 24 * 60 * 60 * 1000, // 1 day in milliseconds
     httpOnly: true,
-    sameSite: 'lax',
-    secure: false,
+    sameSite: 'none',
+    secure: process.env.NODE_ENV === 'production',
 };
 exports.refreshTokenOptions = {
     expires: localRefreshTokenExpiry,
     maxAge: refreshTokenExpire * 24 * 60 * 60 * 1000, // 5 days in milliseconds
     httpOnly: true,
-    sameSite: 'lax',
-    secure: false,
+    sameSite: 'none',
+    secure: process.env.NODE_ENV === 'production',
 };
 // console.log('Current Server Time (UTC):', new Date(currentTime).toLocaleString());
 // console.log('Access Token Expiry (Local):', localAccessTokenExpiryString);
