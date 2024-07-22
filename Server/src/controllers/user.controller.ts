@@ -169,7 +169,8 @@ interface userLoginInterface {
     try {
         const domains = [ 'learn-alpha-murex.vercel.app',
             'learn-git-main-gana31s-projects.vercel.app',
-            'learn-cw69512x3-gana31s-projects.vercel.app'];
+            'learn-cw69512x3-gana31s-projects.vercel.app',
+        "learn-f9zm.vercel.app"];
         // console.log(req.user || "");
         const id = req.user?._id || ''
         await redis.del(id);

@@ -132,7 +132,8 @@ exports.userLogout = (0, asyncHandler_1.asyncHandler)((req, res, next) => __awai
     try {
         const domains = ['learn-alpha-murex.vercel.app',
             'learn-git-main-gana31s-projects.vercel.app',
-            'learn-cw69512x3-gana31s-projects.vercel.app'];
+            'learn-cw69512x3-gana31s-projects.vercel.app',
+            "learn-f9zm.vercel.app"];
         // console.log(req.user || "");
         const id = ((_a = req.user) === null || _a === void 0 ? void 0 : _a._id) || '';
         yield Redis_1.redis.del(id);
