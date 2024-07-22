@@ -165,7 +165,7 @@ interface userLoginInterface {
    })
 
 
-   export const userLogout = asyncHandler(async(req : Request ,res : Response)=>{
+   export const userLogout = asyncHandler(async(req : Request ,res : Response,next:NextFunction)=>{
     try {
         
         // console.log(req.user || "");
@@ -176,7 +176,7 @@ interface userLoginInterface {
         res.status(200).json(new ApiResponse(200,"User LogOut Succesfully"))
 
     } catch (error : any) {
-        throw new ApiError(401, error)
+        next( new ApiError(401, error))
     }
 })
 

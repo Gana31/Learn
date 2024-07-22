@@ -127,7 +127,7 @@ exports.userLogin = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(voi
         throw new ApiError_1.default(401, error);
     }
 }));
-exports.userLogout = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.userLogout = (0, asyncHandler_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
         // console.log(req.user || "");
@@ -138,7 +138,7 @@ exports.userLogout = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(vo
         res.status(200).json(new ApiResponse_1.ApiResponse(200, "User LogOut Succesfully"));
     }
     catch (error) {
-        throw new ApiError_1.default(401, error);
+        next(new ApiError_1.default(401, error));
     }
 }));
 exports.SocialAuth = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

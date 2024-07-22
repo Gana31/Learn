@@ -43,7 +43,7 @@ cloudinary_1.v2.config({
     api_secret: process.env.CLOUD_SECRET_KEY,
 });
 app.get("/", (req, res, next) => {
-    res.send("hello");
+    res.send(process.env.NODE_ENV);
 });
 app.all("*", (req, res, next) => {
     next(new ApiError_1.default(400, "PAGE NOT FOUND "));
