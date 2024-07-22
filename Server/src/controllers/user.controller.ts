@@ -165,15 +165,34 @@ interface userLoginInterface {
    })
 
 
-   export const userLogout = asyncHandler(async(req : Request ,res : Response,next:NextFunction)=>{
+   export const userLogout = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const domains = [ 'learn-alpha-murex.vercel.app',
+        const domains = [
+            'learn-alpha-murex.vercel.app',
             'learn-git-main-gana31s-projects.vercel.app',
             'learn-cw69512x3-gana31s-projects.vercel.app',
-        "learn-f9zm.vercel.app"];
-        // console.log(req.user || "");
-        const id = req.user?._id || ''
+            "learn-f9zm.vercel.app"
+        ];
+
+        const id = req.user?._id || '';
         await redis.del(id);
+
+        // Clear cookies for the current domain
+        res.clearCookie("access_token", {
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true,
+            path: '/'
+        });
+
+        res.clearCookie("refresh_token", {
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true,
+            path: '/'
+        });
+
+        // Clear cookies for specified domains
         domains.forEach(domain => {
             res.cookie("access_token", "", {
                 maxAge: 1,
@@ -194,14 +213,11 @@ interface userLoginInterface {
             });
         });
 
-        res.status(200).json(new ApiResponse(200,"User LogOut Succesfully"))
-
-    } catch (error : any) {
-        next( new ApiError(401, error))
+        res.status(200).json(new ApiResponse(200, "User LogOut Successfully"));
+    } catch (error: any) {
+        next(new ApiError(401, error));
     }
-})
-
-
+});
 
 interface SocialAuthInterface {
     email:string;

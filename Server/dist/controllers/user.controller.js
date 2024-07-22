@@ -130,13 +130,28 @@ exports.userLogin = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(voi
 exports.userLogout = (0, asyncHandler_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
-        const domains = ['learn-alpha-murex.vercel.app',
+        const domains = [
+            'learn-alpha-murex.vercel.app',
             'learn-git-main-gana31s-projects.vercel.app',
             'learn-cw69512x3-gana31s-projects.vercel.app',
-            "learn-f9zm.vercel.app"];
-        // console.log(req.user || "");
+            "learn-f9zm.vercel.app"
+        ];
         const id = ((_a = req.user) === null || _a === void 0 ? void 0 : _a._id) || '';
         yield Redis_1.redis.del(id);
+        // Clear cookies for the current domain
+        res.clearCookie("access_token", {
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true,
+            path: '/'
+        });
+        res.clearCookie("refresh_token", {
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true,
+            path: '/'
+        });
+        // Clear cookies for specified domains
         domains.forEach(domain => {
             res.cookie("access_token", "", {
                 maxAge: 1,
@@ -155,7 +170,7 @@ exports.userLogout = (0, asyncHandler_1.asyncHandler)((req, res, next) => __awai
                 path: '/'
             });
         });
-        res.status(200).json(new ApiResponse_1.ApiResponse(200, "User LogOut Succesfully"));
+        res.status(200).json(new ApiResponse_1.ApiResponse(200, "User LogOut Successfully"));
     }
     catch (error) {
         next(new ApiError_1.default(401, error));
