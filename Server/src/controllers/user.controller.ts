@@ -167,12 +167,32 @@ interface userLoginInterface {
 
    export const userLogout = asyncHandler(async(req : Request ,res : Response,next:NextFunction)=>{
     try {
-        
+        const domains = [ 'https://learn-alpha-murex.vercel.app',
+            'https://learn-git-main-gana31s-projects.vercel.app',
+            'https://learn-cw69512x3-gana31s-projects.vercel.app'];
         // console.log(req.user || "");
         const id = req.user?._id || ''
         await redis.del(id);
-        res.cookie("access_token","",{maxAge:1});
-        res.cookie("refresh_token","",{maxAge:1});
+        domains.forEach(domain => {
+            res.cookie("access_token", "", {
+                maxAge: 1,
+                httpOnly: true,
+                sameSite: 'none',
+                secure: true,
+                domain: domain,
+                path: '/'
+            });
+
+            res.cookie("refresh_token", "", {
+                maxAge: 1,
+                httpOnly: true,
+                sameSite: 'none',
+                secure: true,
+                domain: domain,
+                path: '/'
+            });
+        });
+
         res.status(200).json(new ApiResponse(200,"User LogOut Succesfully"))
 
     } catch (error : any) {
